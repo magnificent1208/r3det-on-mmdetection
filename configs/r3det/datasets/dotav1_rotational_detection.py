@@ -1,7 +1,7 @@
 # dataset settings
 dataset_type = 'DOTADatasetV1'
 # dataset root path:
-data_root = '/home/zhanggefan/Downloads/'
+data_root = '/data/dota/'
 trainsplit_ann_folder = 'trainsplit/labelTxt'
 trainsplit_img_folder = 'trainsplit/images'
 valsplit_ann_folder = 'valsplit/labelTxt'
