@@ -12,10 +12,10 @@ RUN apt-get update && apt-get install -y git ninja-build libglib2.0-0 libsm6 lib
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install mmdetection
+# Install r3det-on-mmdetection
 RUN conda clean --all
-RUN git clone https://github.com/open-mmlab/mmdetection.git /mmdetection
-WORKDIR /mmdetection
+RUN git clone https://github.com/SJTU-Thinklab-Det/r3det-on-mmdetection.git /r3det-on-mmdetection
+WORKDIR /r3det-on-mmdetection
 ENV FORCE_CUDA="1"
 RUN pip install cython --no-cache-dir
 RUN pip install "git+https://github.com/open-mmlab/cocoapi.git#subdirectory=pycocotools"

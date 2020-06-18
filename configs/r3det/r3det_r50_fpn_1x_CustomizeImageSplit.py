@@ -17,7 +17,7 @@ log_config = dict(
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 load_from = None
-resume_from = './work_dirs/r3det_r50_fpn_1x_20200614/epoch_12.pth'
+resume_from = None
 workflow = [('train', 1)]
 work_dir = './work_dirs/r3det_r50_fpn_1x_20200616'
 evaluation = dict(interval=1, metric='mAP')
