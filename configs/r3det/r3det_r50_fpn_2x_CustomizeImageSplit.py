@@ -19,5 +19,5 @@ log_level = 'INFO'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
-work_dir = './work_dirs/r3det_r50_fpn_1x_20200614'
+work_dir = './work_dirs/r3det_r50_fpn_2x_20200616'
 evaluation = dict(interval=1, metric='mAP')

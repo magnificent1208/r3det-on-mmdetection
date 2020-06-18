@@ -7,7 +7,7 @@ from mmcv.runner import load_checkpoint
 from mmdet.models import build_detector
 from mmdet.core.evaluation import reval_map
 
-cfg = Config.fromfile('../configs/r3det/r3det_r50_fpn_1x.py')
+cfg = Config.fromfile('../configs/r3det/r3det_r50_fpn_2x.py')
 
 dataset = build_dataset(cfg.data.val)
 
@@ -20,7 +20,7 @@ data_loader = build_dataloader(
 
 model = build_detector(cfg.model, train_cfg=None, test_cfg=cfg.test_cfg)
 
-checkpoint = load_checkpoint(model, "../work_dirs/r3det_r50_fpn_1x_20200616/epoch_24.pth", map_location='cpu')
+checkpoint = load_checkpoint(model, "../work_dirs/r3det_r50_fpn_2x_20200616/epoch_24.pth", map_location='cpu')
 
 if 'CLASSES' in checkpoint['meta']:
     model.CLASSES = checkpoint['meta']['CLASSES']

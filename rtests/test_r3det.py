@@ -5,7 +5,7 @@ from mmdet.models import build_detector
 from mmcv.parallel import MMDataParallel
 from mmdet.apis import train_detector
 
-cfg = Config.fromfile('../configs/r3det/r3det_r50_fpn_1x.py')
+cfg = Config.fromfile('../configs/r3det/r3det_r50_fpn_2x.py')
 
 datasets = build_dataset(cfg.data.train)
 

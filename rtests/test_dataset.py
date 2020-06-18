@@ -33,7 +33,7 @@ def draw(fig, img, boxes, ignore_bboxes):
         ax.plot([xc], [yc], '+', c='g', markersize=1)
 
 
-cfg = Config.fromfile('../configs/r3det/r3det_r50_fpn_1x.py')
+cfg = Config.fromfile('../configs/r3det/r3det_r50_fpn_2x.py')
 
 datasets = build_dataset(cfg.data.train)
 
