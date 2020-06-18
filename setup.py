@@ -299,6 +299,31 @@ if __name__ == '__main__':
                 name='corner_pool_ext',
                 module='mmdet.ops.corner_pool',
                 sources=['src/corner_pool.cpp']),
+            make_cuda_ext(
+                name='rnms_ext',
+                module='mmdet.ops.nms',
+                sources=['src/rnms_ext.cpp', 'src/rcpu/rnms_cpu.cpp'],
+                sources_cuda=[
+                    'src/rcuda/rnms_cuda.cpp', 'src/rcuda/rnms_kernel.cu'
+                ]),
+            make_cuda_ext(
+                name='rbbox_geo_cuda',
+                module='mmdet.ops.rbbox_geo',
+                sources=[],
+                sources_cuda=[
+                    'src/rbbox_geo_cuda.cpp', 'src/rbbox_geo_kernel.cu'
+                ]),
+            make_cuda_ext(
+                name='polygon_geo_cpu',
+                module='mmdet.ops.polygon_geo',
+                sources=['src/polygon_geo_cpu.cpp']),
+            make_cuda_ext(
+                name='feature_refine_cuda',
+                module='mmdet.ops.fr',
+                sources=[],
+                sources_cuda=[
+                    'src/feature_refine_cuda.cpp', 'src/feature_refine_kernel.cu'
+                ]),
         ],
         cmdclass={'build_ext': BuildExtension},
         zip_safe=False)

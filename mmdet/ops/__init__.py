@@ -15,6 +15,11 @@ from .roi_pool import RoIPool, roi_pool
 from .sigmoid_focal_loss import SigmoidFocalLoss, sigmoid_focal_loss
 from .utils import get_compiler_version, get_compiling_cuda_version
 from .wrappers import Conv2d, ConvTranspose2d, Linear, MaxPool2d
+from .nms import batched_rnms, rnms
+from .rbbox_geo import rbbox_iou_iof
+from .polygon_geo import polygon_iou
+from .fr import FR
+from .feature_refine_module import FeatureRefineModule
 
 __all__ = [
     'nms',
@@ -51,4 +56,10 @@ __all__ = [
     'Linear',
     'nms_match',
     'CornerPool',
+    'rbbox_iou_iof',
+    'polygon_iou',
+    'FR',
+    'FeatureRefineModule',
+    'batched_rnms',
+    'rnms'
 ]

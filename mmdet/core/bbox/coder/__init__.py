@@ -3,8 +3,10 @@ from .delta_xywh_bbox_coder import DeltaXYWHBBoxCoder
 from .legacy_delta_xywh_bbox_coder import LegacyDeltaXYWHBBoxCoder
 from .pseudo_bbox_coder import PseudoBBoxCoder
 from .tblr_bbox_coder import TBLRBBoxCoder
+from .delta_xywha_bbox_coder import DeltaXYWHABBoxCoder
 
 __all__ = [
     'BaseBBoxCoder', 'PseudoBBoxCoder', 'DeltaXYWHBBoxCoder',
-    'LegacyDeltaXYWHBBoxCoder', 'TBLRBBoxCoder'
+    'LegacyDeltaXYWHBBoxCoder', 'TBLRBBoxCoder',
+    'DeltaXYWHABBoxCoder'
 ]
