@@ -13,15 +13,12 @@ Techniques:
 
 ## Performance
 ### DOTA1.0
-| Model |    Backbone    |    Training data    |    Val data    |    mAP   | GPU | Image/GPU | Anchor | Reg. Loss| lr schd | Data Augmentation | Configs |       
-|:------------:|:------------:|:------------:|:---------:|:-----------:|:----------:|:-----------:|:---------:|:---------:|:---------:|:---------:|:---------:|     
-| [R<sup>3</sup>Det*](https://arxiv.org/abs/1908.05612)| ResNet50 600->800 | DOTA1.0 trainval | DOTA1.0 test | 71.90 | **1X** GeForce RTX 2080 Ti | 6 | H + R | smooth L1 | 2x | No | [r3det_r50_fpn_2x_CustomizeImageSplit.py](./configs/r3det/r3det_r50_fpn_2x_CustomizeImageSplit.py) |
-[R<sup>3</sup>Det*](https://arxiv.org/abs/1908.05612): R<sup>3</sup>Det with two refinement stages
-                  
-## Download Model
-### Trained weights
-* [Baidu Drive](https://pan.baidu.com/s/1Ijmh1Lco4T7HPwAtT2h0Zg), password: u8bj.
+| Model |    Backbone    |    Training data    |    Val data    |    mAP  | Model Link  | GPU | Image/GPU | Anchor | Reg. Loss| lr schd | Data Augmentation | Configs |       
+|:------------:|:------------:|:------------:|:---------:|:-----------:|:----------:|:----------:|:-----------:|:---------:|:---------:|:---------:|:---------:|:---------:|     
+| [R<sup>3</sup>Det*](https://arxiv.org/abs/1908.05612)| ResNet50 600->800 | DOTA1.0 trainval | DOTA1.0 test | 71.90 | [Baidu Drive (u8bj)](https://pan.baidu.com/s/1Ijmh1Lco4T7HPwAtT2h0Zg) | **1X** GeForce RTX 2080 Ti | 6 | H + R | smooth L1 | 2x | No | [r3det_r50_fpn_2x_CustomizeImageSplit.py](./configs/r3det/r3det_r50_fpn_2x_CustomizeImageSplit.py) |
 
+[R<sup>3</sup>Det*](https://arxiv.org/abs/1908.05612): R<sup>3</sup>Det with two refinement stages
+                 
 ## Compile
 ```
 python setup.py install
@@ -30,6 +27,10 @@ python setup.py install
 ## Train
 ```
 sh rtools/train.sh
+```
+Or equivalent command:   
+```
+python tools/train.py {configuration-file-path}
 ```
 Before training, please:
 1. Change the paths in lines 97-98 & 102-103 of [dota_image_split.py](./rtools/dota_image_split.py) according to your local DOTA dataset directory.
@@ -41,6 +42,11 @@ Before training, please:
 ```
 sh rtools/test.sh
 ```
+Or equivalent command:   
+```
+python tools/test.py {configuration-file-path} {checkpoint-file-path} --format-only --options submission_dir={path-to-save-submission-files}
+```
+Before test, please make sure the checkpoint file path (in ```rtools/test.sh```) is correct.
 
 ## Citation
 
@@ -76,11 +82,10 @@ If this is useful for your research, please consider cite.
 ```
 
 ## Reference
-- https://github.com/Thinklab-SJTU/R3Det_Tensorflow.git  
-- https://github.com/open-mmlab/mmdetection.git  
+- https://github.com/Thinklab-SJTU/R3Det_Tensorflow    
+- https://github.com/open-mmlab/mmdetection     
 - https://github.com/endernewton/tf-faster-rcnn   
 - https://github.com/zengarden/light_head_rcnn   
 - https://github.com/tensorflow/models/tree/master/research/object_detection    
 - https://github.com/fizyr/keras-retinanet  
-- https://github.com/Thinklab-SJTU/R3Det_Tensorflow.git
-- https://github.com/open-mmlab/mmdetection.git
+
