@@ -16,6 +16,7 @@ Techniques:
 | Model |    Backbone    |    Training data    |    Val data    |    mAP   | GPU | Image/GPU | Anchor | Reg. Loss| lr schd | Data Augmentation | Configs |       
 |:------------:|:------------:|:------------:|:---------:|:-----------:|:----------:|:-----------:|:---------:|:---------:|:---------:|:---------:|:---------:|     
 | [R<sup>3</sup>Det*](https://arxiv.org/abs/1908.05612)| ResNet50 600->800 | DOTA1.0 trainval | DOTA1.0 test | 71.90 | **1X** GeForce RTX 2080 Ti | 6 | H + R | smooth L1 | 2x | No | [r3det_r50_fpn_2x_CustomizeImageSplit.py](./configs/r3det/r3det_r50_fpn_2x_CustomizeImageSplit.py) |
+
 [R<sup>3</sup>Det*](https://arxiv.org/abs/1908.05612): R<sup>3</sup>Det with two refinement stages
                   
 ## Download Model
