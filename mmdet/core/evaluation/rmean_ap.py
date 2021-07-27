@@ -269,4 +269,4 @@ def reval_map(det_results,
     print_map_summary(
         mean_ap, eval_results, dataset, area_ranges, logger=logger)
 
-    return mean_ap, eval_results
+    return mean_ap, eval_results #15

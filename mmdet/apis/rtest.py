@@ -1,13 +1,16 @@
+import os
 import mmcv
 import torch
 import numpy as np
 from mmdet.core import tensor2imgs
 
+ret_base = '/home/maggie/Datasets/ret_dirs/sh_damaged_rot'
 
 def image_merge(data):
     img = data['img']
     img_metas = data['img_metas']
     h, w, = 0, 0
+
 
     for i in range(len(img)):
         img_meta = img_metas[i].data[0]
@@ -50,21 +53,25 @@ def image_merge(data):
 
 def single_gpu_mergetiles_visualize(model,
                                     data_loader,
-                                    show_score_thr=0.3):
+                                    show_score_thr=0.9):
     model.eval()
     dataset = data_loader.dataset
     prog_bar = mmcv.ProgressBar(len(dataset))
     for i, data in enumerate(data_loader):
+        
         with torch.no_grad():
             result = model(return_loss=False, rescale=True, **data)
 
         img_show = image_merge(data)
 
+        ret_img = 'ret_{}.jpg'.format((data['img_metas'][0].data)[0][0]['filename'].split('/')[-1].split('.')[0])
+        ret_dirs = os.path.join(ret_base, ret_img)
+
         model.module.show_result(
             img_show,
             result,
-            show=True,
-            out_file=None,
-            score_thr=show_score_thr)
+            show = False,
+            out_file = ret_dirs,
+            score_thr = show_score_thr)
 
         prog_bar.update()

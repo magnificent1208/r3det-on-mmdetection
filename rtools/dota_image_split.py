@@ -13,7 +13,7 @@ class DOTAImageSplitTool(object):
                  tile_shape,
                  num_process=8,
                  ):
-        self.in_images_dir = osp.join(in_root, 'images/')
+        self.in_images_dir = osp.join(in_root, 'images/images/')
         self.in_labels_dir = osp.join(in_root, 'labelTxt/')
         self.out_images_dir = osp.join(out_root, 'images/')
         self.out_labels_dir = osp.join(out_root, 'labelTxt/')
@@ -24,8 +24,13 @@ class DOTAImageSplitTool(object):
         self.tile_shape = tile_shape
         images = glob.glob(self.in_images_dir + '*.png')
         labels = glob.glob(self.in_labels_dir + '*.txt')
+
+        # map(function, iterable)函数会对指定的序列做映射， 以参数序列中的每一个元素调用function, 返回包含每次function函数返回值的新列表。
         image_ids = [*map(lambda x: osp.splitext(osp.split(x)[-1])[0], images)]
         label_ids = [*map(lambda x: osp.splitext(osp.split(x)[-1])[0], labels)]
+       
+        # set(iterable) iterable -- 可迭代对象对象 创造一个无需不重复
+        # set还有一个功能就是筛选集合元素 https://www.runoob.com/python/python-func-set.html
         assert set(image_ids) == set(label_ids)
         self.image_ids = image_ids
         if not osp.isdir(out_root):
@@ -40,7 +45,7 @@ class DOTAImageSplitTool(object):
         label_dir = osp.join(self.in_labels_dir, image_id + '.txt')
         with open(label_dir, 'r') as f:
             s = f.readlines()
-        header = s[:2]
+        header = s[:2] #header就是两行  imagesource&gsd
         objects = []
         s = s[2:]
         for si in s:
@@ -89,18 +94,18 @@ class DOTAImageSplitTool(object):
                         f.writelines(label_tile)
 
     def split(self):
-        with Pool(self.num_process) as p:
+        with Pool(self.num_process) as p: # pool就是个多进程效率工具
             p.map(self._split_single, self.image_ids)
 
 
 if __name__ == '__main__':
-    trainsplit = DOTAImageSplitTool('/data/dota/train',
-                                    '/data/dota/trainsplit',
+    trainsplit = DOTAImageSplitTool('./data/dota/train',
+                                    './data/dota/trainsplit_test',
                                     tile_overlap=(150, 150),
                                     tile_shape=(600, 600))
     trainsplit.split()
-    valsplit = DOTAImageSplitTool('/data/dota/val',
-                                  '/data/dota/valsplit',
+    valsplit = DOTAImageSplitTool('./data/dota/val',
+                                  './data/dota/valsplit_test',
                                   tile_overlap=(150, 150),
                                   tile_shape=(600, 600))
     valsplit.split()

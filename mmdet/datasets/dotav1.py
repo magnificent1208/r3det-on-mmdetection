@@ -64,9 +64,10 @@ class DOTADatasetV1(CustomDataset):
 
                 with open(ann_file) as f:
                     s = f.readlines()
-                    gsd = s[1].split(':')[-1]
-                    data_info['gsd'] = float(gsd) if gsd != 'null\n' else None
-                    s = s[2:]
+                    #gsd = s[1].split(':')[-1]
+                    #data_info['gsd'] = float(gsd) if gsd != 'null\n' else None
+                    #s = s[2:]
+                    data_info['gsd'] = '2213296' # 无含义 为了填满data_info
                     for si in s:
                         bbox_info = si.split()
                         bbox = bbox_info[:8]

@@ -11,6 +11,7 @@ from mmdet.models import build_detector
 import argparse
 
 
+
 def parse_args():
     parser = argparse.ArgumentParser(description='Visualize result with tile-cropped images')
     parser.add_argument('config', help='test config file path')
@@ -33,16 +34,18 @@ def main():
     data_loader = build_dataloader(
         dataset,
         samples_per_gpu=1,
-        workers_per_gpu=cfg.data.workers_per_gpu,
+        workers_per_gpu=1,
+        #workers_per_gpu=cfg.data.workers_per_gpu,
         dist=False,
-        shuffle=False)
+        shuffle=False) 
 
     # build the model and load checkpoint
     model = build_detector(cfg.model, train_cfg=None, test_cfg=cfg.test_cfg)
     fp16_cfg = cfg.get('fp16', None)
     if fp16_cfg is not None:
         wrap_fp16_model(model)
-    checkpoint = load_checkpoint(model, args.checkpoint, map_location='cpu')
+    # checkpoint = load_checkpoint(model, args.checkpoint, map_location='cpu')
+    checkpoint = load_checkpoint(model, args.checkpoint, map_location='cuda')
 
     # old versions did not save class info in checkpoints, this walkaround is
     # for backward compatibility
@@ -52,7 +55,8 @@ def main():
         model.CLASSES = dataset.CLASSES
 
     model = MMDataParallel(model, device_ids=[0])
-    single_gpu_mergetiles_visualize(model, data_loader, 0.3)
+    
+    single_gpu_mergetiles_visualize(model, data_loader, 0.8)
 
 
 if __name__ == "__main__":
